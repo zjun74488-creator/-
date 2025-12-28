@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>欲望之扉 - Euphoria 的邀约</title>
+<style>
+    /* 在全局选择器中添加此行，取消点击蓝色反馈 */
+    * { -webkit-tap-highlight-color: transparent; } 
+html,body{height:100%;margin:0;padding:0;overflow:hidden}
+body{background:#000;color:#fff;font-family:"Microsoft YaHei",Arial,sans-serif;position:relative}
+body::after{content:"";pointer-events:none;position:fixed;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,0.02),rgba(255,255,255,0.02) 1px,transparent 1px,transparent 3px);mix-blend-mode:overlay;z-index:999}
+body::before{content:"";position:fixed;inset:0;background:rgba(0,0,0,0.4);animation:glitchBg 8s infinite linear;z-index:-1;opacity:0.6}
+@keyframes glitchBg{0%{background:rgba(0,0,0,0.4)}10%{background:rgba(139,0,0,0.3)}20%{background:rgba(0,0,139,0.3)}30%{background:rgba(0,0,0,0.4)}100%{background:rgba(0,0,0,0.4)}}
+#page-wrapper{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-top:80px;box-sizing:border-box}
+header{position:relative;height:100vh;background:url('https://i.ytimg.com/vi/0Nh9qJMYDLU/maxresdefault.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;margin-top:-80px}
+header::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.7)}
+h1{font-size:4.8rem;z-index:1;margin:0;color:#fff;text-shadow:0 0 15px #ff1493, 0 0 25px #ff0000}
+h2{font-size:3rem;margin:2rem 0;color:#ff69b4;text-shadow:0 0 8px #ff1493}
+.container{max-width:1200px;margin:0 auto;padding:2rem}
+nav{position:fixed;top:0;left:0;width:100%;background:rgba(0,0,0,0.8);z-index:100;padding:1rem 0;text-align:center;height:80px;box-sizing:border-box}
+nav a{color:#fff;margin:0 1.5rem;text-decoration:none;font-size:1.4rem;transition:0.3s;cursor:pointer;position:relative}
+nav a:hover{color:#ff69b4;text-shadow:0 0 5px #ff1493}
+nav a:active{color:#cd5c5c;text-shadow:0 0 10px #ff1493,0 0 20px #8b0000}
+section{padding:4rem 0;text-align:center;position:relative}
+#story,#characters,#media,#info{scroll-margin-top:20px}
+.characters{display:flex;flex-direction:column;align-items:center;gap:3rem}
+.row{display:flex;justify-content:center;gap:2rem;width:100%}
+.char{width:200px;background:rgba(255,255,255,0.02);backdrop-filter:blur(4px);border-radius:12px;padding:1rem;transition:0.4s;position:relative;overflow:hidden}
+.char.locked{cursor:not-allowed;pointer-events:none}
+.char.locked img{filter:brightness(0.3) grayscale(100%)}
+.char.locked p{color:#666}
+.char img{width:100%;border-radius:10px;box-shadow:0 0 15px #fff}
+.char:hover{box-shadow:0 0 10px #ff69b4,0 0 30px #ff1493,0 0 60px rgba(255,20,147,.6);transform:scale(1.05)}
+.char:active{transform:scale(0.98);box-shadow:0 0 20px #8b0000,0 0 40px #a52a2a}
+.char::after{content:'';position:absolute;inset:0;opacity:0;pointer-events:none;background:radial-gradient(circle at center,rgba(139,0,0,0.4) 0%,transparent 60%);transition:opacity .2s}
+.char:active::after{opacity:1;animation:ripple 0.6s ease-out}
+.char p{font-size:1.1rem;margin:0.8rem 0 0;color:#ffb6c1}
+footer{background:#111;padding:2rem;text-align:center;font-size:1rem}
+video{width:100%;max-width:800px;height:auto;border:2px solid #fff;border-radius:10px;box-shadow:0 0 20px #ff69b4}
+p{font-size:1.15rem;line-height:1.8;color:#e0e0e0;margin:1rem 0}
+a{color:#ff69b4;text-decoration:underline}
+a:hover{color:#ff1493;text-shadow:0 0 5px #ff69b4}
+a:active{color:#cd5c5c;text-shadow:0 0 8px #8b0000}
+@media (max-width:768px){h1{font-size:2.5rem}h2{font-size:1.8rem}nav a{display:inline-block;margin:0.5rem 1rem;font-size:1.2rem}.row{flex-direction:column;align-items:center}video{height:300px}p{font-size:1rem}#page-wrapper{padding-top:70px}nav{height:70px}header{margin-top:-70px}}
+.glitch{position:relative;font-weight:900}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;overflow:hidden}
+.glitch::before{left:2px;text-shadow:-2px 0 cyan;animation:glitchTop 2s infinite linear alternate-reverse}
+.glitch::after{left:-2px;text-shadow:-2px 0 magenta;animation:glitchBottom 1.5s infinite linear alternate-reverse}
+@keyframes glitchTop{0%,100%{clip-path:inset(0 0 90% 0)}20%{clip-path:inset(0 0 60% 0)}40%{clip-path:inset(0 0 40% 0)}60%{clip-path:inset(0 0 20% 0)}80%{clip-path:inset(0 0 50% 0)}}
+@keyframes glitchBottom{0%,100%{clip-path:inset(80% 0 0 0)}20%{clip-path:inset(60% 0 0 0)}40%{clip-path:inset(40% 0 0 0)}60%{clip-path:inset(20% 0 0 0)}80%{clip-path:inset(50% 0 0 0)}}
+.modal{display:none;position:fixed;z-index:1000;inset:0;overflow:auto;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;opacity:0;transition:opacity .4s}
+.modal.active{display:flex;opacity:1}
+.modal-content{max-width:90%;max-height:90%;text-align:center;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);border-radius:15px;padding:2rem;box-shadow:0 0 30px #8b0000;position:relative;animation:fadeInScale .5s;overflow:hidden}
+.modal-content img{max-width:100%;max-height:70vh;border-radius:10px;box-shadow:0 0 20px #a52a2a;margin-bottom:1.5rem}
+.modal-content h3{margin:1.5rem 0 1rem;color:#cd5c5c;text-shadow:0 0 10px #8b0000;font-size:2rem;line-height:1.4}
+.modal-content p{max-width:800px;margin:0 auto;line-height:1.8;font-size:1.2rem;color:#f0f0f0}
+.close{position:absolute;top:10px;right:20px;color:#fff;font-size:3rem;cursor:pointer;text-shadow:0 0 10px #8b0000;transition:.3s;z-index:1}
+.close:hover{color:#cd5c5c;transform:rotate(90deg)}
+.close:active{color:#8b0000;text-shadow:0 0 15px #ff1493}
+@keyframes fadeInScale{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+.no-scroll{overflow:hidden !important}
+.hidden-char{opacity:0;transition:opacity 1.5s ease-in-out}
+.hidden-char.unlocked{opacity:1;cursor:pointer;pointer-events:auto}
+.hidden-char.unlocked img{filter:none}
+.hidden-char.unlocked p{color:#ffb6c1}
+/* 终极彩蛋：页面变白 + 闪烁雪花噪点（一下一下的） */
+body.white-screen{background:#fff !important;color:#000 !important;transition:background 2s ease,color 2s ease}
+body.white-screen *{color:#000 !important;text-shadow:none !important}
+body.white-screen nav{background:rgba(255,255,255,0.9) !important}
+body.white-screen nav a{color:#333 !important}
+body.white-screen video{border-color:#000 !important;box-shadow:0 0 20px rgba(0,0,0,0.3) !important}
+body.white-screen .glitch::before,body.white-screen .glitch::after{display:none}
+body.white-screen::after{content:"";position:fixed;inset:0;pointer-events:none;background:transparent;z-index:9999;opacity:0.7}
+body.white-screen::after{
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(0,0,0,0.15) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0,0,0,0.15) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.1) 1px, transparent 1px);
+  background-size:50px 50px,70px 70px,100px 100px;
+  background-position:0 0,20px 20px,40px 40px;
+  animation:tvNoise 0.15s infinite steps(4);
+  mix-blend-mode:overlay;
+}
+@keyframes tvNoise{
+  0%,100%{background-position:0 0,20px 20px,40px 40px}
+  25%{background-position:10px 10px,30px 30px,50px 50px}
+  50%{background-position:-10px -10px,-20px -20px,-30px -30px}
+  75%{background-position:5px 15px,25px 35px,45px 55px}
+}
+</style>
+</head>
+<body>
+<div id="page-wrapper">
+<nav>
+<a href="javascript:void(0)" onclick="scrollToSection('#home')">乐园深处</a>
+<a href="javascript:void(0)" onclick="scrollToSection('#story')">沉沦序章</a>
+<a href="javascript:void(0)" onclick="scrollToSection('#characters')">灵魂契约</a>
+<a href="javascript:void(0)" onclick="scrollToSection('#media')">蛊惑之音</a>
+<a href="javascript:void(0)" onclick="scrollToSection('#info')">禁忌铭文</a>
+</nav>
+<header id="home">
+<h1 lang="ja" class="glitch" data-text="楽園の扉">楽園の扉</h1>
+<p class="glitch" data-text="Euphoria - 欲望深渊的低语">Euphoria - 欲望深渊的低语</p>
+<p>献给追求极致“真实”的你...</p>
+</header>
+<div class="container">
+<section id="story">
+<h2>沉沦序章：禁忌的游戏</h2>
+<p>你，被遗弃在纯白的囚笼。耳畔回荡着神秘的邀请：一场名为“开锁”的禁忌游戏。选择你的“钥匙孔”，解锁尘封的欲望，揭示被扭曲的真相。这将是一场触及灵魂深处的探索，关于乐园、关于沉沦、关于...你内心的真实。</p>
+<p>〖此页由"乐园看守者"为您构筑，只为引您更深。〗</p>
+</section>
+<section id="characters">
+<h2>灵魂契约：谁将与你共舞？</h2>
+<div class="characters">
+<div class="row row1">
+<div class="char" onclick="openModalWithCheck('kanae')"><img src="https://files.catbox.moe/pwbio6.jpg" alt="帆刈叶"><p>帆刈 叶 - 破碎的纯真</p></div>
+<div class="char" onclick="openModalWithCheck('nemu')"><img src="https://files.catbox.moe/ccc4j3.jpg" alt="真中合欢"><p>真中 合欢 - 玩弄者之谜</p></div>
+<div class="char" onclick="openModalWithCheck('rinne')"><img src="https://files.catbox.moe/zkitx4.jpg" alt="白夜凛音"><p>白夜 凛音 - 轮回的宿命</p></div>
+</div>
+<div class="row row2">
+<div class="char hidden-char locked" id="rikka-char"><img src="https://files.catbox.moe/2yaxm8.png" alt="莳羽梨香"><p>莳羽 梨香 - 自私的依赖</p></div>
+<div class="char hidden-char locked" id="teacher-char"><img src="https://files.catbox.moe/x5qanx.png" alt="葵菜月"><p>葵 菜月 - 乐观的守护</p></div>
+</div>
+<div class="row row3">
+<div class="char hidden-char locked" id="andou-char"><img src="https://files.catbox.moe/sgojye.png" alt="安藤都子"><p>安藤 都子 - 秩序的捍卫</p></div>
+</div>
+</div>
+</section>
+<section id="media">
+<h2>蛊惑之音：乐园的呼唤</h2>
+<p>OP曲：《楽園の扉》 演唱：青叶りんご</p>
+<video id="opVideo" controls autoplay muted loop playsinline poster="https://i.ytimg.com/vi/0Nh9qJMYDLU/maxresdefault.jpg">
+<source src="https://files.catbox.moe/yh1raa.mp4" type="video/mp4">
+你的设备无法播放这诱人的旋律。或许，这是对你的保护？
+</video>
+<p>「沉浸于这旋律中，感受那份深邃的、禁忌的美感。」</p>
+</section>
+<section id="info">
+<h2>禁忌铭文：关于你的“真实”</h2>
+<p>铸造者：CLOCKUP</p>
+<p>启封之日：2011年6月24日</p>
+<p>本质：直面欲望的ADV（内含极致描写，非凡人所能承受）</p>
+<p>告诫：深入此境，你将触及自我之极限。请在准备好面对一切后，再行探究。</p>
+<p>
+<a href="http://www.clockup.net/" target="_blank">CLOCKUP官方网站（日文原版信息）</a><br>
+<a href="https://www.mangagamer.com/r18/detail.php?product_code=1048" target="_blank">MangaGamer（英文版购买）</a><br>
+<a href="http://www.getchu.com/soft.phtml?id=699173" target="_blank">Getchu（日文商品页面）</a>
+</p>
+</section>
+</div>
+<footer>
+<p>此页由"乐园看守者"为您精心呈现，它只是冰山一角。真正的乐园，等你亲启。</p>
+<p>你的指尖触碰之处，便是命运起始之所。</p>
+</footer>
+</div>
+<div id="modal" class="modal">
+<div class="modal-content" onclick="event.stopPropagation()">
+<span class="close" onclick="closeModal()">×</span>
+<div id="modal-body"></div>
+</div>
+</div>
+<script>
+function scrollToSection(selector){const wrapper=document.getElementById('page-wrapper');const target=document.querySelector(selector);if(target&&wrapper){const navHeight=document.querySelector('nav').offsetHeight;const offset=selector==='#home'?0:navHeight;const targetPosition=target.offsetTop-offset;wrapper.scrollTo({top:targetPosition,behavior:'smooth'});}}
+const modalData={kanae:{img:"https://s1.zerochan.net/Hokari.Kanae.600.1267040.jpg",title:"帆刈 叶（Hokari Kanae）<br>纯洁与堕落的交织",desc:"她曾是纯洁的青梅竹马，如今在乐园的试炼中挣扎。她的温柔是你唯一的慰藉，还是将她推入深渊的诱因？触碰她，感受那份破碎的美丽……（深入她的内心，是救赎还是沉沦，由你决定。）"},nemu:{img:"https://files.catbox.moe/vwf81z.png",title:"真中 合欢（Manaka Nemu）<br>玩弄者之谜",desc:"她以玩弄人心为乐，仿佛一切尽在掌控。那双深邃的眼眸，隐藏着怎样的秘密与渴望？当你试图揭开她的面纱，你将发现的是猎物，还是更深层的欲望……（她是你无法拒绝的诱惑，亦或是你最大的劫难。）"},rinne:{img:"https://truth.bahamut.com.tw/s01/201409/abd74b252aaba4cb0adba5b688b1b126.PNG",title:"白夜 凛音（Byakuya Rinne）<br>轮回的宿命与诱惑",desc:"她沉着冷静，仿佛早已看透一切。她的存在本身，就是一场永恒的轮回。她的秘密，牵动着整个乐园的命运。接近她，你将触碰到被诅咒的真实，以及那份冰冷背后的炽热……（她的宿命，等你来改写，或者...一同沉沦。）"},hidden1:{img:"https://vnsalesman.wordpress.com/wp-content/uploads/2019/06/euphoria-edited-01.jpg?w=1200",title:"深渊的真实低语",desc:"……欢迎来到更深的乐园……这里没有救赎，只有永恒的沉沦……你已无法回头……欲望将吞噬一切……呵呵呵呵……"},rikka:{img:"https://files.catbox.moe/zfr512.jpg",title:"莳羽 梨香（Natsume Rika）<br>扭曲的学妹之欲",desc:"她以天真娇憨的外表掩饰内心的自私与依赖，仿佛一切都能靠撒娇逃脱。那双水汪汪的眼眸，藏着怎样的脆弱与任性？当你试图包容她的哭泣与任性，你将发现的是可爱的小动物，还是无尽的麻烦与拖累……（她是你忍不住宠溺的弱者，亦或是你最头疼的负担。）"},teacher:{img:"https://files.catbox.moe/lm3wot.jpg",title:"葵 菜月（Aoi Natsuki）<br>禁忌的权威与堕落",desc:"她以温柔随和的笑容守护学生，仿佛一切都能以乐观化解。那双成熟柔和的眼眸，隐藏着怎样的可靠与自我坚持？当你试图依赖她的从容与包容，你将发现的是可靠的大姐姐，还是隐藏的慵懒与界限……（她是你可以依靠的港湾，亦或是你无法完全掌控的成熟诱惑。）"},andou:{img:"https://files.catbox.moe/lmbnue.png",title:"安藤 都子（Andou Miyako）<br>囚笼的叛逆",desc:"她以维护秩序为使命，仿佛规则就是她的信仰。那双冷峻的眼眸，掩盖着怎样的刚毅与隐痛？当你试图接近她的堡垒，你将触及的是铁壁，还是那瞬间崩落的脆弱……（她是你永不妥协的指引，亦或是你最快的幻灭。）"},finalHidden:{img:"https://files.catbox.moe/3qxxmh.png",title:"终极的禁忌之门",desc:"……你终于找到了这里……最深处的真实……没有名字的欲望……没有尽头的轮回……你已彻底属于乐园……永不超生……"}};
+let clickSequence=[];const correctSequence1=['nemu','rinne','kanae'];const correctSequence2=['rikka','teacher','kanae','rinne','nemu'];let level1Unlocked=false;let level2Unlocked=false;let pendingUnlock=false;let pendingFinalHidden=false;
+function openModalWithCheck(id){clickSequence.push(id);if(clickSequence.length>5)clickSequence.shift();openModal(id);if(!level1Unlocked&&clickSequence.length===3&&clickSequence.join(',')===correctSequence1.join(',')){pendingUnlock=true;setTimeout(()=>{if(document.getElementById('modal').classList.contains('active')){triggerHidden1();}},800);}if(level1Unlocked&&!level2Unlocked&&clickSequence.length===5&&clickSequence.join(',')===correctSequence2.join(',')){pendingFinalHidden=true;setTimeout(triggerFinalHidden,800);}}
+function openModal(id){const data=modalData[id];if(!data)return;const modalBody=document.getElementById('modal-body');modalBody.innerHTML='<img src="'+data.img+'" alt="角色图像"><h3>'+data.title+'</h3><p>'+data.desc+'</p>';document.getElementById('modal').classList.add('active');document.getElementById('page-wrapper').classList.add('no-scroll');}
+function triggerHidden1(){const data=modalData.hidden1;const modalBody=document.getElementById('modal-body');modalBody.innerHTML='<img src="'+data.img+'" alt="隐藏CG"><h3 class="glitch" data-text="'+data.title+'">'+data.title+'</h3><p style="font-size:1.4rem;color:#ff1493;text-shadow:0 0 15px #8b0000;">'+data.desc+'</p>';}
+function triggerFinalHidden(){const data=modalData.finalHidden;const modalBody=document.getElementById('modal-body');modalBody.innerHTML='<img src="'+data.img+'" alt="终极隐藏CG"><h3 class="glitch" data-text="'+data.title+'">'+data.title+'</h3><p style="font-size:1.6rem;color:#8b0000;text-shadow:0 0 20px #ff1493,0 0 40px #8b0000;">'+data.desc+'</p>';const video=document.getElementById('opVideo');const source=video.querySelector('source');source.src='https://files.catbox.moe/m35yhr.mp4';video.load();}
+function unlockHiddenChars(){document.getElementById('rikka-char').classList.add('unlocked');document.getElementById('rikka-char').classList.remove('locked');document.getElementById('rikka-char').onclick=function(){openModalWithCheck('rikka');};document.getElementById('teacher-char').classList.add('unlocked');document.getElementById('teacher-char').classList.remove('locked');document.getElementById('teacher-char').onclick=function(){openModalWithCheck('teacher');};level1Unlocked=true;pendingUnlock=false;}
+function unlockAndouChar(){const andouChar=document.getElementById('andou-char');andouChar.classList.add('unlocked');andouChar.classList.remove('locked');andouChar.onclick=function(){openModalWithCheck('andou');};level2Unlocked=true;pendingFinalHidden=false;}
+function closeModal(){document.getElementById('modal').classList.remove('active');document.getElementById('page-wrapper').classList.remove('no-scroll');if(pendingUnlock){unlockHiddenChars();}if(pendingFinalHidden){unlockAndouChar();scrollToSection('#media');document.body.classList.add('white-screen');}}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this){closeModal();}});
+const video=document.getElementById('opVideo');let soundPermissionGranted=false;let userManuallyPaused=false;let initialPlayTime=0;let pauseAllowed=false;
+function tryEnableSound(){if(!soundPermissionGranted&&video.muted){video.muted=false;soundPermissionGranted=true;}}
+function forcePlayIfNeeded(){if(!userManuallyPaused){video.play().catch(()=>{});}}
+window.addEventListener('load',()=>{video.play().catch(()=>{});initialPlayTime=video.currentTime;});
+const events=['click','touchstart','touchend','mousedown','mouseup','keydown','scroll'];events.forEach(ev=>document.addEventListener(ev,tryEnableSound));
+video.addEventListener('volumechange',()=>{if(video.muted)soundPermissionGranted=false;});
+video.addEventListener('pause',()=>{if(pauseAllowed)userManuallyPaused=true;else video.play();});
+video.addEventListener('play',()=>userManuallyPaused=false);
+video.addEventListener('timeupdate',()=>{if(!pauseAllowed&&(video.currentTime-initialPlayTime>=3))pauseAllowed=true;});
+video.addEventListener('ended',forcePlayIfNeeded);
+video.addEventListener('suspend',forcePlayIfNeeded);
+video.addEventListener('waiting',forcePlayIfNeeded);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)forcePlayIfNeeded();});
+setInterval(forcePlayIfNeeded,1500);
+</script>
+</body>
+</html>
